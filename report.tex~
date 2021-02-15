@@ -1,0 +1,40 @@
+\documentclass[journal, compsoc]{IEEEtran}
+
+\usepackage{graphics}
+
+\title{Artificial Intelligence Report on Solutions to Laboratory Problems}
+
+\author{Siddhartha~Tiwari, Siddharth~Mani~Tiwari, Saurabh~Kumar, Pushkar~Tiwari}
+
+%\author{
+%\IEEEauthorblockN{Siddhartha Tiwari}\IEEEauthorblockA{201851127}
+%\and
+%\IEEEauthorblockN{Siddharth Mani Tiwari}\IEEEauthorblockA{201851126}
+%\and
+%\IEEEauthorblockN{Saurabh Kumar}\IEEEauthorblockA{201851113}
+%\and
+%\IEEEauthorblockN{Pushkar Tiwari}\IEEEauthorblockA{201851095}
+%}
+
+\begin{document}
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+This report discusses and solves various laboratory problems assigned to us by Dr. Pratik Shah. The problems discussed are from various fields including State Space Search, Heauristics based search, Simulated Annealing, Alpha-Beta Pruning, Causal Bayesian Networks. For each problem, the most efficient solution is arrived upon gradually, using different techniques taught in the class.
+\end{abstract}
+}
+\maketitle
+\section{The Rabbit Leap Problem}
+\subsection{Problem Statement}
+In the rabbit leap problem, $3$ rabbits right-bound rabbits stand in a line blocked by $3$ left-bound rabbits with a empty stone between them. The rabbits can only move forward one step or two steps. They can jump over one rabbit if the need arises, but not more than that. The problem is to find a sequence of rabbit jumps such that all the rabbits are in the direction they intended to go to.
+\subsection{Modelling}
+The problem can be modeled as a state search problem. Consider the start state. Assume that the left bound frogs are represented by the letter $L$ and the right bound frogs are represented by the letter $R$. The empty stone can be represented by a underscore(\_). So, each state can now be represented as a string of exactly seven characters. For example, the string representation of the start state is \textbf{LLL\_RRR}.
+
+Given this representation, the state space consists of all such states reachable by the start state by the some moves according to the problem statement. Each transition from one state to the other is equivalent to one valid move. So, the state transition diagram looks like in figure 1.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[1in, 1in]{rabbitleap.eps}
+\caption{State Space of the Rabbit Leap problem}
+\label{fig_sim}
+\end{figure}
+\end{document}
