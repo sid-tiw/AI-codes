@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.29)  15 FEB 2021 22:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.29)  16 FEB 2021 20:58
 entering extended mode
 **./report.tex
 (report.tex
@@ -346,16 +346,18 @@ File: scrambled_gradient.pdf Graphic file (type pdf)
 <use scrambled_gradient.pdf>
 Package pdftex.def Info: scrambled_gradient.pdf  used on input line 189.
 (pdftex.def)             Requested size: 126.47249pt x 94.8551pt.
-[2 <./less_scrambled_gradient.pdf> <./scrambled_gradient.pdf>] (report.aux)
+[2 <./less_scrambled_gradient.pdf> <./scrambled_gradient.pdf>] [3
+
+] (report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3589 strings out of 479618
- 54979 string characters out of 2881508
- 349864 words of memory out of 3000000
- 20715 multiletter control sequences out of 15000+200000
+ 3593 strings out of 479618
+ 55041 string characters out of 2881508
+ 349872 words of memory out of 3000000
+ 20719 multiletter control sequences out of 15000+200000
  452445 words of font info for 144 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,9n,74p,402b,356s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -369,9 +371,9 @@ nts/type1/public/amsfonts/cm/cmr5.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/cm
 pfb><D:/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/MiKTeX/fonts/type1/urw/p
 alatino/uplb8a.pfb><D:/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><D:/MiKTeX/fo
 nts/type1/urw/zapfding/uzdr.pfb>
-Output written on report.pdf (2 pages, 626364 bytes).
+Output written on report.pdf (3 pages, 629731 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 86 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -203,22 +203,27 @@ E(I(x,y)) = \sum_{x,y} |\nabla I(x,y)|
 
 \subsection{Implementation}
 
-The implementation of the simulated annealing is given in Algorithm \ref{algo:sim}
+The implementation of the simulated annealing is given in Algorithm \ref{algo:sim}. The matlab live code file can be found at the link
+provided above.
 
 \begin{algorithm}
 \caption{Simulated Annealing}\label{algo:sim}
 \begin{algorithmic}[1]
 \Procedure{Simulated Annealing}{$img$}\Comment{img is the $2-$D array of pixels of the image.}
 \State $iterations \gets 100$
+\State $it \gets 0$
+\State $i \gets img$ \Comment{Start state is the original image.}
 \State $C \gets 1000$
-\While{$frontier.size$ $\neq$ 0}
-\State $curr \gets frontier.pop()$
-\If{$curr = gl$}
-\State \textbf{return} $start \rightarrow curr$
+\While{$it \neq iterations$}
+\State $f \gets $ rand\_swap\_block() \Comment{random swapping}
+\If{$E(f) \leq E(i)$}
+\State $i \gets f$
+\ElsIf{$rand(0, 1) \leq e^{\frac{(E(i) - E(f))}{C}}$}
+\State $i \gets f$
 \EndIf
-\State $frontier.push(curr.children \notin visited)$
-\State $visited \gets visited + \{curr\}$
-\EndWhile\label{bfsendwhile}
+\State $it \gets it + 1$
+\EndWhile
+\State \textbf{return } $i$
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
