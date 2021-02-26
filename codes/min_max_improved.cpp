@@ -54,11 +54,13 @@ void print(string st) {
 
 map<pair<string, int>, int> scores;
 string val = "OX";
-string test_state = "XO_______";
+string test_state = "_________";
 
+int count_m_m = 0, count_abp = 0;
 
 // Min-Max algorithm. Generates all the possible states and find out what is the min-max value of each node.
 int recursive(string states, int turn) {
+    count_m_m++;
     if (turn == 0) {
         int mn = 2;
         for (int i = 0; i < 9; i++) {
@@ -111,6 +113,7 @@ int recursive(string states, int turn) {
 // We can take infinity = 2 in this case because 2 will never be achieved in naughts and crosses.
 pair_cust alpha_beta_pruning(string state, int alpha, int beta, int turn) {
     // Everything almost remains same as the min-max except the condition that stops the algorithm from exploring the nodes further
+    count_abp++;
     if (turn) {
         int ans = -2;
         string m_state = state;
@@ -267,6 +270,11 @@ int abp_play() {
 }
 
 int main () {
+    alpha_beta_pruning(test_state, -2, 2, 0);
+    recursive(test_state, 0);
+
+    cout << "Number of explored nodes in min-max is: " << count_m_m << endl;
+    cout << "Number of explored nodes in alpha-beta pruning is: " << count_abp << endl;
 
     abp_play();
     // auto it = alpha_beta_pruning(test_state, -2, 2, 1);

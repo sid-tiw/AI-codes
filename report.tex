@@ -5,6 +5,10 @@
 \usepackage{algpseudocode}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathtools}
+
+\newcommand\Mycomb[2][^n]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
 
 \title{Artificial Intelligence Report on Solutions to Laboratory Problems}
 
@@ -227,5 +231,176 @@ provided above.
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+\subsection{Other Solutions}
+After running the algorithm a number of times we came to the conclusion that this form of simulated annealing does not solve the problem
+completely. So, we tried a different entropy function for the edge detection. It takes two square blocks of the picture and find the average
+values of pixel along the common edge. Thus, we find all such possible combinations of two edges. After that, we assigned a cost to each
+such edge using the difference between the average values calculated. Now, to do simulated annealing the entropy of a state is the total cost
+of all the edges of the picture.\\
+We also tried various other sub-algorithms like grouping 4 picture blocks into one if the total cost of all the edges in the block is close
+to zero. All these solutions we tried is in the Jigsaw folder of our repository. Here is the \href{https://github.com/sid-tiw/AI-codes/tree/main/codes/Jigsaw}{link} to the folder.
+
+\section{Travelling Salesman Problem}
+\subsection{Introduction}
+The objective of this problem is to find the most optimal hamiltonian cycle. A hamiltonian cycle is a loop that visits each of the
+vertices of a graph exactly once, except the first and the last vertex. The problem is used in multiple practical purposes. One is
+to find out the most optimal path visiting a given set of cities with least travel as possible.
+
+\subsection{Solution}
+We are using Simulated annealing to solve this problem sub-optimally. We used test cases from \cite{test_case} to test the program.
+We used two ideas to update the Hamiltonian cycle in a given iteration. The first idea is to choose a subpath of the hamiltonian cycle
+and then replace it with the reverse of the subpath. The another is that instead of replacing the reverse of the subpath, permute the
+subpath with a random premutation, and then replace it in the hamiltonian cycle.\\
+The two approaches surprisingly differ by a much margin. The results of these two approaches is given in the table below.
+\begin{table}[!h]
+\renewcommand{\arraystretch}{0.4}
+\caption{Reversing the subpath}
+\label{tab:cost}
+\centering
+\begin{tabular}{c||c||c||c}
+\hline
+\bfseries No of points & \bfseries reversing & permuting & \bfseries actual path cost\\
+\hline\hline
+131 & 601 & 2380 & 564\\
+237 & 1530 & 4132 & 1019\\
+380 & 1911 & 7012 & 1621\\
+423 & 1810 & 9000 & 1365\\
+662 & 4815 & 12000 & 2513\\
+\hline
+\end{tabular}
+\end{table}
+
+
+Clearly, the algorithm performs better when the subpath is reversed compared to when it is permuted. We tried but failed to find the
+exact reason behind this.\\
+We chose $20$ tourist locations of Rajashtan to find the sub-optimal path connecting all the cities. The result is in the live code
+file at \href{https://github.com/sid-tiw/AI-codes/blob/main/codes/Traveling%20Salesman/cities.mlx}{this link}.
+
+\section{Heuristic Search}
+\subsection{Peg Solitaire}
+In the peg solitaire problem, player can move pegs on the board with holes. The goal is to reach the board configuration where only one marble is left at the centre. 
+
+\subsubsection{Modelling}
+The problem is a state space search problem with initial state given as the initial configuration of the board and goal state as the final configuration.
+In general, a hole can be filled by 4 different possible number of moves. Hence maximum branching factor of the state search will be $4 \times$  number of holes on board. Total number of possible board configuration can be $2^{33}$. 
+
+The state space of peg-solitaire problem contains all the states reachable from start state. Also for any to states $u$ and $v$ there is only single directed path connecting them, i.e. we either can go from $u$ to $v$ or from $v$ to $u$. This statement is clear as in a single move the number of pegs on the board reduces by $1$. There is no valid move that one can do to increase number of pegs on the board. Thus, the state space graph is a directed acyclic connected graph or a tree.
+
+\subsubsection{Heuristics for Peg solitaire}
+Few important things to notice on the board that favours the solution are that, last row from each side should be given more preference. Isolated pegs are not desirable. There is a symmetry about $4$ axis on the board.
+
+One heuristic function for the given problem can be the sum of the manhattan distance of every peg from cell $4,4$ divided by total number of pegs on the board.
+\begin{algorithm}
+\caption{1. Heuristic Function}
+\begin{algorithmic}[1]
+\Procedure{Heuristic Function}{s}\Comment{State of the graph}
+\While{all the pegs are not visited}
+\State $TotalPegs \gets TotalPegs+1$
+\State $TotalDist \gets TotalDist+ |x-4|+|y-4|$
+\EndWhile
+\State $Heuristic cost \gets \frac{TotalDist}{TotalPegs}$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+This heuristic is admissible as total cost to reach goal from a given state is always less than path cost. Infact it is too low and we can use another heuristic along with this one.
+
+Another heuristic function can be the minimum distance between any two isolated islands of pegs.
+\begin{algorithm}
+\caption{2. Heuristic Function}
+\begin{algorithmic}[1]
+\Procedure{Heuristic Function}{s} \Comment{State of the board}
+\While{every island is not visited}
+\State $Hcost \gets Hcost + $min dist from neighbouring islands
+\EndWhile
+\State Heuristic cost $\gets$ Hcost
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{K-SAT Problem}
+A K-SAT problem has $m$ clauses. Clauses are made up of literals. Each clause is of length $K$ and contains distinct variables or their negation. Also there is $n$ number of variables.
+\subsubsection{Modelling}
+The initial state of the given problem can be represented by an array of length $n$ having all values set to either False or True. In State transition,for each transition one of the bits
+will be flipped and the minimum Heuristic state cost will be stored. This process is repeated till the goal state is reached or we reach near the best possible state.
+
+\subsubsection{Heuristics}
+The most important thing to notice here is that the goal state is reached as the truth value the individual clauses becomes true! We will use this as our heuristic function.
+\begin{algorithm}
+\caption{Heuristic function for K-SAT}
+\begin{algorithmic}
+\Procedure{Heuristic function}{clauses, s} \Comment{takes clauses and state of all the variable as input}
+For every clause in clauses:
+    \If{Truth value of clause is true}
+    Heuristic cost+=1
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Penetrance}
+Penetrance of the hill climbing is 1 since hill climbing is a greedy algorithm so it will go for that path which has next best possible state
+so the length of the path from the root to the solution is same as total number of nodes explored.Penetrance of Beam Search is $1/3$ for width
+$=$ 3 and $1/4$ for width $=4$ this is because for every node in actual path we explore $width$ number of new states.
+
+\section{Mini-max algorithm and Alpha-Beta pruning}
+\subsection{Introduction}
+In Naughts and Crosses two players alternatively take turns to draw their respective symbols in any of the empty cells of a $3 \times 3$ square that is empty
+at the start of the game. The player who first manages to draw $3$ of their symbols in the same row, same column or along any of the diagonals, wins the game.\\
+The upper-bound of the size of the game tree for noughts and crosses is $3^9$. Though the original size of the game tree is much smaller. We can easily calculate
+the approximate size of the game tree by realizing the fact that at a given instant of time the difference between number of \textbf{X} and the number of \textbf{O}
+can be at most $1$. Assuming that X starts first, the total number of states in the game tree is approximately:
+\[
+  N \approx \sum_{n = 0}^{4}\Mycomb[9]{n}(\Mycomb[9]{n - 1} + \Mycomb[9]{n});
+\]
+After running the program the minimax algorithm explored \textbf{$182170$} states. While the alpha-beta pruning (discussed later) explored only \textbf{$10050$} states.
+The intermediate game tree is shown in the Figure \ref{fig_te}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5in]{graph.pdf}
+\caption{Game tree of Naughts and Crosses}
+\label{fig_te}
+\end{figure}
+
+\subsection{Discussion of the solution}
+Now that we have a clear understanding of state and transitions, lets discuss how to make a powerful agent that never looses the game. 
+
+What if we have a agent which can peep into the future and judge which next state is best for it. This same concept is used in many game
+playing programs like deep blue. The program just on the knowledge of the current state will iterate upto some depth $d$ in the game tree
+and will try to choose that state which will maximize its chances of winning.
+
+The minimax algorithm is complete in the sense that it finds the optimal solution, and if the game is optimal and someone is playing against the computer then, the computer
+will never lose. But minimax has its own disadvantages, the major being the size of the state space. $\alpha-\beta$ pruning decreases the state space of the search as it
+doesn't explore the nodes which have no effect on the output of the parent node in the game tree. The code of both the algorithms can be found \href{https://github.com/sid-tiw/AI-codes/blob/main/codes/min\_max\_improved.cpp}{here}.
+
+\subsection {Complexity of the Alpha-Beta pruning}
+
+In the best case of the Alpha-Beta pruning, if the effective branching factor is $b$, then the time required can be written as:
+\[T(m) = T(m - 1) + (b - 1) \times T(m - 2) + O(1)\]
+Where m is the height of the tree.\\
+The characteristic equation for the recurrence relation given above:
+\[x^2 - x - (b - 1) = 0\]
+\[\implies x = \frac{1 \pm \sqrt{4 \times b - 3}}{2} = \pm O(b^{\frac{1}{2}})\]
+
+So, the solution of this recurrence relation is given by (under the assumption that $b$ is greater than $1$):
+\[T(m) = a \times O(b^{\frac{1}{2}})^{m} - b \times O(b^{\frac{1}{2}})^{m}\]
+\[\implies T(m) = C \times O(b^{\frac{m}{2}}) = O(b^{\frac{m}{2}})\]
+
+
+\begin{thebibliography}{9}
+\bibitem{Travelling Salesman Problem}
+Travelling Salesman Problem
+\\\texttt{https://en.wikipedia.org/wiki/Travelling\_salesman\_problem}
+
+\bibitem{ai} 
+Stuart J. Russell and Peter Norvig. 2003.
+\\\textit{Artificial Intelligence: A Modern Approach (2nd. ed.).}
+Pearson Education.
+
+\bibitem{test_case} 
+Travelling Salesman Test Cases,
+\\\texttt{http://www.math.uwaterloo.ca/tsp/vlsi/index.html\#XQF131}
+\end{thebibliography}
+
 
 \end{document}

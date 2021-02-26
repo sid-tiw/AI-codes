@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{The Rabbit Leap Problem}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Introduction}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Modelling}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Size of the state space search}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Breadth First Search Solution}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Depth First Search Solution}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{Challenge Problem: Jigsaw Puzzle}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Introduction}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Discussion of solution}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{The Entropy function}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Implementation}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.5}{Other Solutions}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Travelling Salesman Problem}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{Introduction}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{Solution}{section.3}% 15
+\BOOKMARK [1][-]{section.4}{Heuristic Search}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Peg Solitaire}{section.4}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Modelling}{subsection.4.1}% 18
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Heuristics for Peg solitaire}{subsection.4.1}% 19
+\BOOKMARK [2][-]{subsection.4.2}{K-SAT Problem}{section.4}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Modelling}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Heuristics}{subsection.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Penetrance}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Mini-max algorithm and Alpha-Beta pruning}{}% 24
+\BOOKMARK [2][-]{subsection.5.1}{Introduction}{section.5}% 25
+\BOOKMARK [2][-]{subsection.5.2}{Discussion of the solution}{section.5}% 26
+\BOOKMARK [2][-]{subsection.5.3}{Complexity of the Alpha-Beta pruning}{section.5}% 27
+\BOOKMARK [1][-]{section*.1}{References}{}% 28
